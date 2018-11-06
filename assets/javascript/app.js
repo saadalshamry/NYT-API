@@ -3,8 +3,12 @@
 //Submit button
 $("#submit").on("click", function (event) {
 
+<<<<<<< HEAD
+  var key = "?api-key=e7f9620ade334806b2c913e061942370";
+=======
 
   var key = "$api-key=e7f9620ade334806b2c913e061942370";
+>>>>>>> eb5d1a248516eed19d2e34830b5c1f159d0ec02b
   var apiurl = "https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key"
   var searchTerm = $("#searchTerm").text(); //The search term input box
   var numRecords = $("#numRecords").text(); //The number of records input box
@@ -13,6 +17,16 @@ $("#submit").on("click", function (event) {
 
   var pageResults = 10;
 
+<<<<<<< HEAD
+  if (searchTerm !== "") {
+    queryString += "&?q=" + searchTerm
+  }
+  if (numRecords !== "") {
+
+    var numPages = Math.floor(numRecords / pageResults)
+
+    queryString += "&?page=" + numPages
+=======
   var queryString; //The query string that will be built
   
   //Creates the search term section of the query string.
@@ -43,7 +57,9 @@ $("#submit").on("click", function (event) {
   "Format: YYYYMMDD
   Restricts responses to results with publication dates of the date specified or later."*/
        queryString += "&?begin_date=" + startYear
+>>>>>>> eb5d1a248516eed19d2e34830b5c1f159d0ec02b
   }
+  var finalurl = apiurl + key + queryString;
 
   //Creates the end year section of the query string.
   if (endYear !== ""){
@@ -57,14 +73,23 @@ $("#submit").on("click", function (event) {
 
 
   $.ajax({
-    url: url
+    url: finalurl
   }).then(function (response) {
     var res = response.response.docs;
     res.forEach(function (doc) {
       var div = $('<div class="doc">');
       var a = $('<a>')
+      var h2 = $('<h2>')
+      var p = $('<p>')
+      h2.text(doc.headline.main);
+      p.text(doc.snippet)
       a.attr('href', doc.web_url);
-      a.text('Visit URL')
+      a.text('Visit URL');
+      div.append(h2);
+      div.append(p);
+      div.append(a);
+      $('body').append(div);
+
     });
   });
 
