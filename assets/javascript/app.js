@@ -9,6 +9,21 @@ $("#submit").on("click", function (event) {
   var numRecords = $("#numRecords").text();
   var startYear = $("#startYear").text();
   var endYear = $("#endYear").text();
+  var pageResults = 10;
+
+  var queryString;
+
+  if (searchTerm !== ""){
+    queryString += "&?q=" + searchTerm
+  }
+  if (numRecords !== ""){
+  
+     var numPages = Math.floor(numRecords/pageResults)
+
+    queryString += "&?page=" + numPages
+  }
+
+
 
   $.ajax({
     url: url
