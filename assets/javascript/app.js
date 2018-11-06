@@ -10,20 +10,43 @@ $("#submit").on("click", function (event) {
   var pageResults = 10;
 
   var queryString; //The query string that will be built
-
+  
+  //Creates the search term section of the query string.
   if (searchTerm !== ""){
-    queryString += "&?q=" + searchTerm
+  /*q  string
+  Location: query ?q=xyz
+  Search query term. Search is performed on the article body, headline and byline.*/
+
+    queryString += "&?q=" + searchTerm 
   }
+
+   //Creates the pages section of the query string.
   if (numRecords !== ""){
+  /*page  integer
+  Location: query ?page=123
+  "The value of page corresponds to a set of 10 results 
+  (it does not indicate the starting number of the result set). 
+  For example, page=0 corresponds to records 0-9. To return records 10-19, 
+  set page to 1, not 10."*/
       var numPages = Math.floor(numRecords/pageResults)
       queryString += "&?page=" + numPages
   }
+  
+//Creates the start year section of the query string.
   if (startYear !== ""){
-  
-     queryString += "?begin_date=" + startYear
+  /*begin_date  string
+  Location: query ?begin_date=xyz
+  "Format: YYYYMMDD
+  Restricts responses to results with publication dates of the date specified or later."*/
+       queryString += "?begin_date=" + startYear
   }
+
+  //Creates the end year section of the query string.
   if (endYear !== ""){
-  
+  /*end_date  string
+  Location: query ?end_date=xyz
+  "Format: YYYYMMDD
+  Restricts responses to results with publication dates of the date specified or earlier."*/
     queryString += "?end_date=" + endYear
  }
 
@@ -36,4 +59,3 @@ $("#clear").on("click", function (event) {
 
 });
 
-////eflms;mfosrmg'kjwepjf p[ewkfgjoepwksfl'
