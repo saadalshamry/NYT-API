@@ -3,7 +3,7 @@
 //Submit button
 $("#submit").on("click", function (event) {
 
-  var key = "$api-key=e7f9620ade334806b2c913e061942370";
+  var key = "?api-key=e7f9620ade334806b2c913e061942370";
   var apiurl = "https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key"
   var searchTerm = $("#searchTerm").text();
   var numRecords = $("#numRecords").text();
@@ -13,27 +13,37 @@ $("#submit").on("click", function (event) {
 
   var queryString;
 
-  if (searchTerm !== ""){
+  if (searchTerm !== "") {
     queryString += "&?q=" + searchTerm
   }
-  if (numRecords !== ""){
-  
-     var numPages = Math.floor(numRecords/pageResults)
+  if (numRecords !== "") {
+
+    var numPages = Math.floor(numRecords / pageResults)
 
     queryString += "&?page=" + numPages
   }
+  var finalurl = apiurl + key + queryString;
 
 
 
   $.ajax({
-    url: url
+    url: finalurl
   }).then(function (response) {
     var res = response.response.docs;
     res.forEach(function (doc) {
       var div = $('<div class="doc">');
       var a = $('<a>')
+      var h2 = $('<h2>')
+      var p = $('<p>')
+      h2.text(doc.headline.main);
+      p.text(doc.snippet)
       a.attr('href', doc.web_url);
-      a.text('Visit URL')
+      a.text('Visit URL');
+      div.append(h2);
+      div.append(p);
+      div.append(a);
+      $('body').append(div);
+
     });
   });
 
