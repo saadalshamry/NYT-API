@@ -42,7 +42,7 @@ $("#submit").on("click", function (event) {
   Location: query ?begin_date=xyz
   "Format: YYYYMMDD
   Restricts responses to results with publication dates of the date specified or later."*/
-       queryString += "?begin_date=" + startYear
+       queryString += "&?begin_date=" + startYear
   }
 
   //Creates the end year section of the query string.
@@ -51,7 +51,7 @@ $("#submit").on("click", function (event) {
   Location: query ?end_date=xyz
   "Format: YYYYMMDD
   Restricts responses to results with publication dates of the date specified or earlier."*/
-    queryString += "?end_date=" + endYear
+    queryString += "&?end_date=" + endYear
  }
 
 
