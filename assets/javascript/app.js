@@ -3,23 +3,29 @@
 //Submit button
 $("#submit").on("click", function (event) {
 
-  var searchTerm = $("#searchTerm").text();
-  var numRecords = $("#numRecords").text();
-  var startYear = $("#startYear").text();
-  var endYear = $("#endYear").text();
+  var searchTerm = $("#searchTerm").text(); //The search term input box
+  var numRecords = $("#numRecords").text(); //The number of records input box
+  var startYear = $("#startYear").text(); //The start year input box (optional)
+  var endYear = $("#endYear").text(); //The end year input box (optional)
   var pageResults = 10;
 
-  var queryString;
+  var queryString; //The query string that will be built
 
   if (searchTerm !== ""){
     queryString += "&?q=" + searchTerm
   }
   if (numRecords !== ""){
-  
-     var numPages = Math.floor(numRecords/pageResults)
-
-    queryString += "&?page=" + numPages
+      var numPages = Math.floor(numRecords/pageResults)
+      queryString += "&?page=" + numPages
   }
+  if (startYear !== ""){
+  
+     queryString += "?begin_date=" + startYear
+  }
+  if (endYear !== ""){
+  
+    queryString += "?end_date=" + endYear
+ }
 
 
 
