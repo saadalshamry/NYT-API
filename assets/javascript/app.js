@@ -3,31 +3,17 @@
 //Submit button
 $("#submit").on("click", function (event) {
 
-<<<<<<< HEAD
-  var key = "?api-key=e7f9620ade334806b2c913e061942370";
-=======
 
   var key = "$api-key=e7f9620ade334806b2c913e061942370";
->>>>>>> eb5d1a248516eed19d2e34830b5c1f159d0ec02b
-  var apiurl = "https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key"
-  var searchTerm = $("#searchTerm").text(); //The search term input box
-  var numRecords = $("#numRecords").text(); //The number of records input box
-  var startYear = $("#startYear").text(); //The start year input box (optional)
-  var endYear = $("#endYear").text(); //The end year input box (optional)
-
+  var apiurl = "https://api.nytimes.com/svc/search/v2/articlesearch.json?";
+  var searchTerm = $("#searchTerm").val(); //The search term input box
+  var numRecords = $("#numRecords").val(); //The number of records input box
+  var startYear = $("#startYear").val(); //The start year input box (optional)
+  var endYear = $("#endYear").val(); //The end year input box (optional)
+  var queryString; //The query string that will be built
   var pageResults = 10;
 
-<<<<<<< HEAD
-  if (searchTerm !== "") {
-    queryString += "&?q=" + searchTerm
-  }
-  if (numRecords !== "") {
 
-    var numPages = Math.floor(numRecords / pageResults)
-
-    queryString += "&?page=" + numPages
-=======
-  var queryString; //The query string that will be built
   
   //Creates the search term section of the query string.
   if (searchTerm !== ""){
@@ -35,7 +21,7 @@ $("#submit").on("click", function (event) {
   Location: query ?q=xyz
   Search query term. Search is performed on the article body, headline and byline.*/
 
-    queryString += "&?q=" + searchTerm 
+    queryString += "&?q=" + searchTerm;
   }
 
    //Creates the pages section of the query string.
@@ -47,7 +33,7 @@ $("#submit").on("click", function (event) {
   For example, page=0 corresponds to records 0-9. To return records 10-19, 
   set page to 1, not 10."*/
       var numPages = Math.floor(numRecords/pageResults)
-      queryString += "&?page=" + numPages
+      queryString += "&?page=" + numPages;
   }
   
 //Creates the start year section of the query string.
@@ -56,10 +42,9 @@ $("#submit").on("click", function (event) {
   Location: query ?begin_date=xyz
   "Format: YYYYMMDD
   Restricts responses to results with publication dates of the date specified or later."*/
-       queryString += "&?begin_date=" + startYear
->>>>>>> eb5d1a248516eed19d2e34830b5c1f159d0ec02b
+       queryString += "&?begin_date=" + startYear;
   }
-  var finalurl = apiurl + key + queryString;
+  
 
   //Creates the end year section of the query string.
   if (endYear !== ""){
@@ -67,10 +52,11 @@ $("#submit").on("click", function (event) {
   Location: query ?end_date=xyz
   "Format: YYYYMMDD
   Restricts responses to results with publication dates of the date specified or earlier."*/
-    queryString += "&?end_date=" + endYear
+    queryString += "&?end_date=" + endYear;
  }
 
-
+ var finalurl = apiurl + key + queryString;
+ console.log(finalurl);
 
   $.ajax({
     url: finalurl
@@ -97,6 +83,6 @@ $("#submit").on("click", function (event) {
 
 //Clear button
 $("#clear").on("click", function (event) {
-
+    $("#topSearchResults").empty();
 });
 
