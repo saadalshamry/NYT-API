@@ -1,19 +1,17 @@
 //API Key: e7f9620ade334806b2c913e061942370
-
+ //The query string that will be built
 //Submit button
 $("#submit").on("click", function (event) {
 
 
-  var key = "$api-key=e7f9620ade334806b2c913e061942370";
+  var key = "api-key=e7f9620ade334806b2c913e061942370";
   var apiurl = "https://api.nytimes.com/svc/search/v2/articlesearch.json?";
   var searchTerm = $("#searchTerm").val(); //The search term input box
   var numRecords = $("#numRecords").val(); //The number of records input box
   var startYear = $("#startYear").val(); //The start year input box (optional)
   var endYear = $("#endYear").val(); //The end year input box (optional)
-  var queryString; //The query string that will be built
+  var queryString ="";
   var pageResults = 10;
-
-
   
   //Creates the search term section of the query string.
   if (searchTerm !== ""){
@@ -23,6 +21,7 @@ $("#submit").on("click", function (event) {
 
     queryString += "&?q=" + searchTerm;
   }
+
 
    //Creates the pages section of the query string.
   if (numRecords !== ""){
@@ -56,8 +55,7 @@ $("#submit").on("click", function (event) {
  }
 
  var finalurl = apiurl + key + queryString;
- console.log(finalurl);
-
+ 
   $.ajax({
     url: finalurl
   }).then(function (response) {
