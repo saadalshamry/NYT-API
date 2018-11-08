@@ -12,6 +12,8 @@ $("#submit").on("click", function (event) {
   var endYear = $("#endYear").val(); //The end year input box (optional)
   var queryString ="";
   var pageResults = 10;
+
+  
   
   //Creates the search term section of the query string.
   if (searchTerm !== ""){
@@ -55,6 +57,8 @@ $("#submit").on("click", function (event) {
  }
 
  var finalurl = apiurl + key + queryString;
+
+
 
   $.ajax({
     url: finalurl
