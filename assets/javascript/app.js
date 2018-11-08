@@ -55,7 +55,7 @@ $("#submit").on("click", function (event) {
  }
 
  var finalurl = apiurl + key + queryString;
- 
+
   $.ajax({
     url: finalurl
   }).then(function (response) {
@@ -68,6 +68,7 @@ $("#submit").on("click", function (event) {
       h2.text(doc.headline.main);
       p.text(doc.snippet)
       a.attr('href', doc.web_url);
+      a.attr('target', "_blank");
       a.text('Visit URL');
       div.append(h2);
       div.append(p);
